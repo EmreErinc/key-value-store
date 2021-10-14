@@ -1,0 +1,82 @@
+basePath: /
+definitions:
+  store.Done:
+    properties:
+      done:
+        type: string
+    type: object
+  store.SetKeyValueRequest:
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+    type: object
+host: google.com
+info:
+  contact:
+    email: ce.emreerinc@gmail.com
+    name: Key-Value Store API Support
+    url: https://www.swagger.io/support
+  description: Key-Value Store
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://swagger.io/terms/
+  title: Key-Value Store API
+  version: "1.0"
+paths:
+  /store:
+    get:
+      consumes:
+      - application/json
+      description: list key-value pair to store
+      operationId: key-value-get
+      parameters:
+      - description: find value by key
+        in: query
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+    post:
+      consumes:
+      - application/json
+      description: add key-value pair to store
+      operationId: key-value-set
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/store.SetKeyValueRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/store.Done'
+  /store/flush:
+    put:
+      consumes:
+      - application/json
+      description: flush key-value list on store
+      operationId: flush-key-value-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/store.Done'
+swagger: "2.0"

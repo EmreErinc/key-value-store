@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "d72eeefc-3f21-4c44-9326-64319f7d1b46",
+		"name": "key-value-store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add pair to store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"key\":\"k5\",\n    \"value\":\"v5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/store",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get current store",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/store?key=k6",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"store"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "k6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "flush store",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "flush store",
+					"host": [
+						"flush store"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,124 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Key-Value Store",
+        "title": "Key-Value Store API",
+        "termsOfService": "https://swagger.io/terms/",
+        "contact": {
+            "name": "Key-Value Store API Support",
+            "url": "https://www.swagger.io/support",
+            "email": "ce.emreerinc@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "google.com",
+    "basePath": "/",
+    "paths": {
+        "/store": {
+            "get": {
+                "description": "list key-value pair to store",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "key-value-get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "find value by key",
+                        "name": "key",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "add key-value pair to store",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "key-value-set",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/store.SetKeyValueRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/store.Done"
+                        }
+                    }
+                }
+            }
+        },
+        "/store/flush": {
+            "put": {
+                "description": "flush key-value list on store",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "flush-key-value-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/store.Done"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "store.Done": {
+            "type": "object",
+            "properties": {
+                "done": {
+                    "type": "string"
+                }
+            }
+        },
+        "store.SetKeyValueRequest": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
